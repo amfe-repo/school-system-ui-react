@@ -1,0 +1,100 @@
+.home-component
+{
+    height: 100vh;
+    background-position: center center;
+    background-attachment: fixed;
+    background-size:contain;
+    background-repeat: no-repeat;
+}
+
+.home-btn-txt
+{
+    text-align: center;
+    margin: auto auto !important;
+    width: 100%;
+}
+
+.home-btn-txt p
+{
+    margin-bottom: 2em;
+}
+
+.home-btn
+{
+    width: 20%;
+    display: block;
+    margin: 0 auto !important;
+    border-radius: 25px;
+}
+
+a
+{
+    text-decoration: none;
+}
+
+.home-btn:hover
+{
+    background-color: rgb(209, 37, 37);
+    color: rgb(50, 50, 50) !important;
+}
+
+
+/*=== MEDIA QUERY ===*/
+
+@media only screen and (max-width: 600px)
+{
+    .home-btn
+    {
+        width: 80%;
+    }
+}
+
+@media only screen and (min-width: 600px)
+{
+    .home-btn
+    {
+        width: 60%;
+    }
+}
+
+@media only screen and (min-width: 768px)
+{
+    .home-btn
+    {
+        width: 50%;
+    }
+}
+
+@media only screen and (min-width: 992px) 
+{
+    .home-btn
+    {
+        width: 40%;
+    }
+}
+
+
+@media only screen and (min-width: 1200px) 
+{
+    .home-btn
+    {
+        width: 35%;
+    }
+}
+
+@media only screen and (min-width: 1400px) 
+{
+    .home-btn
+    {
+        width: 30%;
+    }
+}
+
+@media only screen and (min-width: 1800px) 
+{
+    .home-btn
+    {
+        width: 20%;
+    }
+}
+
