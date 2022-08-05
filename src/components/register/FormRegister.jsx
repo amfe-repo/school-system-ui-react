@@ -1,19 +1,22 @@
 import { useState } from 'react';
 import { Navigate } from 'react-router-dom';
 
-import { successAlert, errorAlert } from '../../utilities/alerts';
+import { errorAlert } from '../../utilities/alerts';
+
+import { getSession } from '../../services/localStorage/main';
+import { RegisterUser } from '../../services/api/main';
 
 import './FormRegister.css';
 
 export default function FormRegister() {
-
+    
     const [name, setName] = useState("");
     const [last, setLast] = useState("");
     const [user, setUser] = useState("");
     const [email, setEmail] = useState("");
-    const [phone, setPhone] = useState("");
     const [password, setPassword] = useState("");
     const [vefPass, setVefPass] = useState("");
+    const [condition, setCondition] = useState("1")
 
     const createUser = (e)=>
     {
@@ -26,22 +29,20 @@ export default function FormRegister() {
         } 
 
         try {
-            /*addUser({
+            RegisterUser({
                 name: name,
                 lastname: last,
                 username: user,
                 email: email,
-                phone: phone,
                 password: password
-            });*/
-
-            successAlert('User registered');
+            }, condition);
         } catch (error) {
+            console.log(error)
             errorAlert('User not registered');
         }
     }
 
-    //{getSession() && <Navigate replace to ="/perfil"/>}
+    {getSession() && <Navigate replace to ="/perfil"/>}
   return (
       <>
     <form className="mx-auto my-0 border border-danger shadow-lg text-info mb-5 p-4" onSubmit={createUser}>
@@ -68,6 +69,13 @@ export default function FormRegister() {
         <div className="mb-3">
             <label htmlFor="exampleInputPassword2" className="form-label text-secondary">Verify password</label>
             <input type="password" onChange={ e => setVefPass(e.target.value) } className="form-control" id="exampleInputPassword2" required />
+        </div>
+        <div className="mb-3">
+            <label htmlFor="exampleInputPassword2" className="form-label text-secondary">Condicion</label>
+            <select className="form-select" aria-label="Default select example" onChange={ (sel) =>{ setCondition(sel.target.options[sel.target.selectedIndex].value) } } required>
+                <option value="1">Estudiante</option>
+                <option value="2">Profesor</option>
+            </select>
         </div>
         <div className="button-register w-100 d-flex justify-content-center">
             <button type="submit" className="btn btn-danger text-ligth form-btn-submit mt-3">Send</button>

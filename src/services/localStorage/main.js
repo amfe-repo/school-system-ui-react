@@ -1,3 +1,5 @@
+import { Navigate } from "react-router-dom";
+
 export function insertSession(value)
 {
     if(value)
@@ -24,4 +26,8 @@ export function destroySession()
 {
     window.localStorage.removeItem('sesion');
     window.location.replace('/login');
+}
+
+export function VerifyNotSession(url) {
+    if (!getSession()) return <Navigate replace to ={url}/>
 }

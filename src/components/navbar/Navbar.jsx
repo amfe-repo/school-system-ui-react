@@ -1,7 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { GetAcademicRole } from '../../services/api/main'
+import { destroySession, getSession } from '../../services/localStorage/main'
 
 export default function Navbar() {
+  let role = GetAcademicRole()
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light shadow p-2">
   <div className="container-fluid">
@@ -14,33 +17,71 @@ export default function Navbar() {
       <li className="nav-item">
       <Link className="nav-link" to={'/'}>Home</Link>
       </li>
-        <li className="nav-item">
-        <Link className="nav-link" to={'/login'}>Iniciar sesion</Link>
-        </li>
-        <li className="nav-item">
-        <Link className="nav-link" to={'/register'}>Registrarse</Link>
-        </li>
-        <li className="nav-item">
-        <Link className="nav-link" to={'/perfil'}>Perfil</Link>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link" href="#">Cerrar sesion</a>
-        </li>
-        <li className="nav-item">
-        <Link className="nav-link" to={'/courses'}>Cursos disponibles</Link>
-        </li>
-        <li className="nav-item">
-        <Link className="nav-link" to={'/my-courses'}>Mis cursos</Link>
-        </li>
-        <li className="nav-item">
-        <Link className="nav-link" to={'/students'}>Estudiantes</Link>
-        </li>
-        <li className="nav-item">
-        <Link className="nav-link" to={'/teachers'}>Profesores</Link>
-        </li>
-        <li className="nav-item">
-        <Link className="nav-link" to={'/administration'}>Administracion</Link>
-        </li>
+      {!getSession() && (
+          <li className="nav-item">
+          <Link className="nav-link" to={'/login'}>Iniciar sesion</Link>
+          </li>
+        )
+      }
+
+    {!getSession() && (
+            <li className="nav-item">
+            <Link className="nav-link" to={'/register'}>Registrarse</Link>
+            </li>
+            )
+          }
+      
+      {getSession() && (
+          <li className="nav-item">
+          <Link className="nav-link" to={'/perfil'}>Perfil</Link>
+          </li>
+        )
+      }
+
+
+{getSession() && role[0] || (!role[0] && !role[1]) && (
+  <li className="nav-item">
+          <Link className="nav-link" to={'/courses'}>Cursos disponibles</Link>
+          </li>
+        )
+      }
+
+{getSession() && (role[0] || role[1]) && (
+  <li className="nav-item">
+          <Link className="nav-link" to={'/my-courses'}>Mis cursos</Link>
+          </li>
+        )
+      }
+
+{getSession() && (
+  <li className="nav-item">
+          <Link className="nav-link" to={'/students'}>Estudiantes</Link>
+          </li>
+        )
+      }
+      
+{getSession() && (
+  <li className="nav-item">
+          <Link className="nav-link" to={'/teachers'}>Profesores</Link>
+          </li>
+        )
+      }
+
+{getSession() && (
+  <li className="nav-item">
+          <Link className="nav-link" to={'/administration'}>Administracion</Link>
+          </li>
+        )
+      }
+        
+  {getSession() && (
+            <li className="nav-item">
+            <a className="nav-link" onClick={destroySession} href="">Cerrar sesion</a>
+          </li>
+          )
+        }
+        
+        
       </ul>
     </div>
   </div>
