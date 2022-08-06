@@ -17,6 +17,7 @@ import RoleEditView from './components/users/RoleEditView';
 
 import './App.css';
 import EditViewPermission from './components/permisos/EditViewPermission';
+import EnrollTeaches from './components/users/EnrollTeaches';
 
 function App() {
   return (
@@ -49,6 +50,8 @@ function App() {
           <Route path='/permission-edit' element={<EditViewPermission mode={'edit'}/>}></Route>
           <Route path='/permission-view' element={<EditViewPermission mode={'view'}/>}></Route>
           <Route path='/permission-create' element={<EditViewPermission mode={'create'}/>}></Route>
+
+          <Route path='/enroll-teacher' element={<EnrollTeaches/>}></Route>
         </Routes>
       </BrowserRouter>
     </div>

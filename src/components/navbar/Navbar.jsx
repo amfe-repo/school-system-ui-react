@@ -4,7 +4,7 @@ import { GetAcademicRole } from '../../services/api/main'
 import { destroySession, getSession } from '../../services/localStorage/main'
 
 export default function Navbar() {
-  let role = GetAcademicRole()
+  let role = GetAcademicRole() || [false, false]
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light shadow p-2">
   <div className="container-fluid">
@@ -39,7 +39,7 @@ export default function Navbar() {
       }
 
 
-{getSession() && role[0] || (!role[0] && !role[1]) && (
+{getSession() && role[0] || !(role[0] && role[1]) && (
   <li className="nav-item">
           <Link className="nav-link" to={'/courses'}>Cursos disponibles</Link>
           </li>

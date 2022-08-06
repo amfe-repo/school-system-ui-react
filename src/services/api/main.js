@@ -16,6 +16,101 @@ export async function GetUsers() {
   console.log(json)
 } 
 
+export async function GetCourses() {
+    let result = await fetch( Config.API.URL + 'courses/', {
+  })
+
+  let json = await result.json()
+
+  return json
+} 
+
+export async function GetEnrolled(email, pass) {
+  let result = await fetch( Config.API.URL + 'enroll-courses/', {
+    headers:{
+      'Session-user-data':`{"email":"${email}", "password":"${pass}"}`
+    }
+})
+
+  let json = await result.json()
+
+  return json
+}
+
+export async function GetStudents(email, pass) {
+  let result = await fetch( Config.API.URL + 'students/', {
+    headers:{
+      'Session-user-data':`{"email":"${email}", "password":"${pass}"}`
+    }
+})
+
+  let json = await result.json()
+
+  return json
+}
+
+export async function GetTeachers(email, pass) {
+  let result = await fetch( Config.API.URL + 'teachers/', {
+    headers:{
+      'Session-user-data':`{"email":"${email}", "password":"${pass}"}`
+    }
+})
+
+  let json = await result.json()
+
+  return json
+}
+
+export async function GetAdministratives(email, pass) {
+  let result = await fetch( Config.API.URL + 'users/', {
+    headers:{
+      'Session-user-data':`{"email":"${email}", "password":"${pass}"}`
+    }
+})
+
+  let json = await result.json()
+
+  let response = {Data: json.Data.filter(user => user.administrative_role.ID > 1)} 
+
+  return response
+}
+
+export async function GetRoles(email, pass) {
+  let result = await fetch( Config.API.URL + 'roles/', {
+    headers:{
+      'Session-user-data':`{"email":"${email}", "password":"${pass}"}`
+    }
+})
+
+  let json = await result.json()
+
+  return json
+}
+
+export async function GetPermissions(email, pass) {
+  let result = await fetch( Config.API.URL + 'permissions/', {
+    headers:{
+      'Session-user-data':`{"email":"${email}", "password":"${pass}"}`
+    }
+})
+
+  let json = await result.json()
+
+  return json
+}
+
+export async function GetStudentsRequests(email, pass) {
+  let result = await fetch( Config.API.URL + 'request-courses/', {
+    headers:{
+      'Session-user-data':`{"email":"${email}", "password":"${pass}"}`
+    }
+})
+
+  let json = await result.json()
+
+  return json
+}
+
 export async function Authentication(email, password) {
   let raw = await fetch( Config.API.URL + 'login/', {
     method: 'POST',
@@ -110,3 +205,5 @@ export function Authorization(permission) {
     }
   }
 }
+
+

@@ -18,13 +18,15 @@ function PerfilAcademicCard() {
       <form className="mx-auto my-0 border border-danger shadow-lg text-secondary p-4 h-75">
           <div className="mb-3 text-center">
               <label className="form-label fs-5">{'Matricula'}</label>
-              <input type="email" class="form-control" id="exampleFormControlInput1" disabled/>
+              <input type="email" class="form-control" id="exampleFormControlInput1" value={
+                role[0] ? data.Student.registration_number : data.Teacher.registration_number
+                } disabled/>
           </div>
             {
                 !role[0] && (
                     <div className="mb-3 text-center">
                         <label className="form-label fs-5">{'Puntuacion'}</label>
-                        <input type="email" class="form-control" id="exampleFormControlInput1" disabled/>
+                        <input type="email" value={data.Student.average_score} class="form-control" id="exampleFormControlInput1" disabled/>
                     </div>
 
                 )
